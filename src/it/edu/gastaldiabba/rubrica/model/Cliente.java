@@ -69,13 +69,14 @@ public void setAff(int x){
     aff=x;
 }
 public Cliente() {}
-public Cliente(String n, String i, String c, String t, String IVA, String cit, int a) {
+public Cliente(String n, String i, String c, String t, String IVA, String cit, String m, int a) {
     nomeAz = n;
     indirizzo = i;
     cap = c;
     telefono = t;
     pIVA = IVA;
     citta = cit;
+    mail = m;
     aff = a;
 } 
 

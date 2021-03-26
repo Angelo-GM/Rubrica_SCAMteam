@@ -1,8 +1,11 @@
 package it.edu.gastaldiabba.rubrica;
 
+import it.edu.gastaldiabba.rubrica.model.Cliente;
 import java.io.File;
 import java.io.IOException;
 import static java.lang.System.getProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -27,8 +30,9 @@ public class LeggiScriviXml {
         return x;
     }
     
-public LeggiScriviXml() {}
-public static void creaXML() throws ParserConfigurationException, TransformerConfigurationException, TransformerException, SAXException, IOException {
+  public LeggiScriviXml() {}
+  
+  public static void creaXML() throws ParserConfigurationException, TransformerConfigurationException, TransformerException, SAXException, IOException {
     
     DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
     DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -84,7 +88,7 @@ public static void creaXML() throws ParserConfigurationException, TransformerCon
     
     DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
     DocumentBuilder build = dbf.newDocumentBuilder();
-       Document document = build.parse(xmlFilePath());
+    Document document = build.parse(xmlFilePath());
       
     
     TransformerFactory tf = TransformerFactory.newInstance();
@@ -94,5 +98,24 @@ public static void creaXML() throws ParserConfigurationException, TransformerCon
     transformer.transform(src, sr);
     
 }
-    
+  public static void leggiXML(Document document){
+      NodeList clienti = document.getElementsByTagName("Cliente");
+      ObservableList<Cliente> c= FXCollections.observableArrayList();
+      for(int i = 0; i < clienti.getLength(); i++) {
+       Element cliente = (Element)clienti.item(i);
+        String nomeAz = cliente.getElementsByTagName("nomeAzienda").item(0).getTextContent();
+        String indirizzo = cliente.getElementsByTagName("indirizzo").item(0).getTextContent();
+        String cap = cliente.getElementsByTagName("cap").item(0).getTextContent();
+        String citta = cliente.getElementsByTagName("citta").item(0).getTextContent();
+        String pIVA = cliente.getElementsByTagName("partitaIVA").item(0).getTextContent();
+        String telefono = cliente.getElementsByTagName("telefono").item(0).getTextContent();
+        String mail = cliente.getElementsByTagName("mail").item(0).getTextContent();
+        String note = cliente.getElementsByTagName("note").item(0).getTextContent();
+        String a = cliente.getAttributes().getNamedItem("affidabilita").getNodeValue();
+        int aff = Integer.parseInt(a);
+        Cliente z=new Cliente(nomeAz, indirizzo, cap, telefono, pIVA, citta, mail, aff);
+        c.add(z);
+      }
+
+  }
 }
