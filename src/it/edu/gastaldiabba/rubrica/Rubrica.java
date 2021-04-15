@@ -5,12 +5,13 @@
  */
 package it.edu.gastaldiabba.rubrica;
 
-import static it.edu.gastaldiabba.rubrica.LeggiScriviXml.xmlFilePath;
+import it.edu.gastaldiabba.rubrica.controller.RubricaController;
 import it.edu.gastaldiabba.rubrica.model.Cliente;
 import java.io.File;
 import java.io.IOException;
 import static java.lang.System.getProperty;
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -32,22 +33,17 @@ import org.xml.sax.SAXException;
  */
 public class Rubrica extends Application {
     
-    ObservableList<Cliente> listaClienti= FXCollections.observableArrayList();
+    public ObservableList<Cliente> listaClienti= FXCollections
+            .observableArrayList();
+    
+    public ObservableList<Cliente> getListaClienti(){
+        return listaClienti;
+    }
     
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("view/Rubrica.fxml"));
         
-        Scene scene = new Scene(root);
-       // stage.getIcons().add(new Image(""));
-        stage.setTitle("Rubrica");
-        stage.setScene(scene);
-        stage.show();
-    }
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
         try {
             
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -66,10 +62,22 @@ public class Rubrica extends Application {
         catch(ParserConfigurationException | TransformerException | SAXException | IOException ex) {
         
             System.out.println("Errore");
-        } 
+        }
+        
+        Scene scene = new Scene(root);
+       // stage.getIcons().add(new Image(""));
+        stage.setTitle("Rubrica");
+        stage.setScene(scene);
+        stage.show();
+    }
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+         
         launch(args);
     }
-    public static void leggiXML(Document document){
+    public void leggiXML(Document document){
       NodeList clienti = document.getElementsByTagName("Cliente");
       for(int i = 0; i < clienti.getLength(); i++) {
        Element cliente = (Element)clienti.item(i);
@@ -98,5 +106,5 @@ public class Rubrica extends Application {
         String x = p+"rubrica.xml";
         return x;
     }
-    
+   
 }

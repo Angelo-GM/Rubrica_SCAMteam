@@ -58,6 +58,7 @@ public class RubricaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         filterBox.getItems().addAll(filterList);
+        
     }    
     
 }
