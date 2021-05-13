@@ -13,9 +13,9 @@
 <AnchorPane id="AnchorPane" fx:id="sfondo" prefHeight="824.0" prefWidth="1303.0" stylesheets="@../../../../../DarkTheme.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.edu.gastaldiabba.rubrica.controller.RubricaController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <Button fx:id="aggiungi" layoutX="135.0" layoutY="723.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="276.0" text="Aggiungi Cliente" />
-      <Button fx:id="salva" layoutX="543.0" layoutY="722.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="256.0" text="Salva Modifiche" />
-      <Button fx:id="rimuovi" layoutX="930.0" layoutY="720.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="242.0" text="Rimuovi Cliente" />
+      <Button fx:id="aggiungi" layoutX="135.0" layoutY="723.0" mnemonicParsing="false" onAction="#aggiungiClicked" prefHeight="70.0" prefWidth="276.0" text="Aggiungi Cliente" />
+      <Button fx:id="importa" layoutX="962.0" layoutY="723.0" mnemonicParsing="false" onAction="#importaClicked" prefHeight="70.0" prefWidth="256.0" text="Importa Clienti da Esterno" />
+      <Button fx:id="rimuovi" layoutX="560.0" layoutY="723.0" mnemonicParsing="false" onAction="#rimuoviClicked" prefHeight="70.0" prefWidth="256.0" text="Rimuovi Cliente" />
       <ComboBox fx:id="filterBox" layoutX="61.0" layoutY="97.0" prefHeight="32.0" prefWidth="227.0" promptText="Ordina per" />
       <RadioButton fx:id="crescente" layoutX="375.0" layoutY="105.0" mnemonicParsing="false" selected="true" text="Crescente">
          <toggleGroup>

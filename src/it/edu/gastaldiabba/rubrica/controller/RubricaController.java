@@ -7,13 +7,26 @@ package it.edu.gastaldiabba.rubrica.controller;
 
 import it.edu.gastaldiabba.rubrica.Rubrica;
 import it.edu.gastaldiabba.rubrica.model.Cliente;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Orientation;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -26,6 +39,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.stage.Stage;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -45,9 +60,9 @@ public class RubricaController extends Rubrica implements Initializable {
     @FXML
     private Button aggiungi;
     @FXML
-    private Button salva;
-    @FXML
     private Button rimuovi;
+    @FXML
+    private Button importa;
     @FXML
     private RadioButton crescente;
     @FXML
@@ -61,8 +76,8 @@ public class RubricaController extends Rubrica implements Initializable {
     @FXML
     private ListView<Cliente> lista;
     private ObservableList<Cliente> itemList;
-     
-     
+    
+        
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -108,5 +123,56 @@ public class RubricaController extends Rubrica implements Initializable {
         for(int i=0;i<10;i++){
             itemList.add(new Cliente( "Azienda" +i, "idsfasdfs"," casasdfadf","tdsdfdf","IVA", "Genova","m", 3));
         }
+    }
+
+    @FXML
+    private void aggiungiClicked(ActionEvent event) throws Exception {
+        Stage stage = new Stage();
+        Parent root;
+        root = FXMLLoader.load(getClass().getClassLoader().getResource("view/Rubrica.fxml"));
+        
+        Scene scene = new Scene(root);
+       // stage.getIcons().add(new Image(""));
+        stage.setTitle("Rubrica");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void importaClicked(ActionEvent event) {
+        JFileChooser fc=new JFileChooser();
+        
+	/*	if(fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
+			FileReader read=null;
+                        File select = fc.getSelectedFile();
+			try{
+			    read = new FileReader(select);
+			    Scanner s=new Scanner(read);
+			    String persona;
+		            String[] x;
+                            ArrayList ps=new ArrayList();
+                                while(s.hasNextLine()){  
+                                persona=s.nextLine();
+                                x=persona.split(";"); 
+                                Cliente z=new Cliente(x[0], x[1], x[2], dn, lingue);
+                                ps.add(z);
+                            }
+                             
+			} catch(FileNotFoundException | ArrayIndexOutOfBoundsException ex){
+				errorFile.setVisible(true);
+			} 
+			finally{
+				try{
+					if(read!=null)	
+					read.close();
+				} catch(IOException ex){
+				System.out.println("errore");
+				}
+			}
+                }*/
+    }
+
+    @FXML
+    private void rimuoviClicked(ActionEvent event) {
     }
 }
